@@ -1,3 +1,9 @@
+const mongoose = require("mongoose");
+const { MONGO_URI } = require("../config");
+const { Technology } = require("../models");
+
+mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+
 const technologies = [
   {
     name: "Node.js",
@@ -77,3 +83,10 @@ const technologies = [
     logo: "vue.svg",
   },
 ];
+
+Technology.create(technologies)
+  .then(() => {
+    console.log("Technologies created!!! ");
+    mongoose.disconnect();
+  })
+  .catch(console.log);
