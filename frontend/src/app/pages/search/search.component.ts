@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Technology } from 'src/app/models/technology.model';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  technologies: Technology[] = [];
+  query: string;
 
-  ngOnInit(): void {
+  constructor(
+    private _activateRoute: ActivatedRoute, 
+    private _http_service: HttpService) { }
+
+  ngOnInit() {
+    this._activateRoute.params.subscribe(params => {
+      this.query = params['query'];
+      this._http_service
+        .searchTecnology(this.query)
+        .subscribe((technologies: Technology[]) => {
+          this.technologies = technologies["data"];
+        });
+    });
   }
 
 }

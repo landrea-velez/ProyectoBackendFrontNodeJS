@@ -17,8 +17,18 @@
           </li>        
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input 
+            class="form-control me-2" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            #searchQuery
+            (keyup.enter)="searchTechnology(searchQuery.value)"
+            >
+          <button 
+            class="btn btn-outline-success" 
+            type="submit" 
+            (click)="searchTechnology(searchQuery.value)">Search</button>
         </form>
       </div>
     </div>

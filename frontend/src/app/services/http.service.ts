@@ -20,7 +20,7 @@ export class HttpService {
     return this._http.get<Technology>(this.baseUrl + "/technology/" + id);
   }
 
-  public getSearchTecnology(query: string){
-    return this._http.get<Technology>(this.baseUrl + "/technology/search" + query);
+  public searchTecnology(query: string){
+    return this._http.get<Technology[]>(this.baseUrl + "/technology/search" + query);
   }
 }
